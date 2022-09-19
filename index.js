@@ -43,7 +43,7 @@ inquirer
 
     {
       type: "input",
-      message: "Please enter the intern's name, ID, email, and GitHub username",
+      message: "Please enter the intern's name, ID, email, and school",
       name: "intern",
       when: (answers) => answers.options == "Add an intern",
       // loop: (options, true),
