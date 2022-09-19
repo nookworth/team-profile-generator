@@ -2,8 +2,8 @@ const { validate } = require("@babel/types");
 const fs = require("fs");
 const inquirer = require("inquirer");
 
-const Employee = require('./lib/employee');
-const Engineer = require('./lib/engineer');
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 const cards = [];
 
 inquirer
@@ -52,7 +52,12 @@ inquirer
   .then((response) => {
     if (response.options == "Add an engineer") {
       var engData = response.engineer.split(" ");
-      var anEngineer = new Engineer(engData[0], engData[1], engData[2], engData[3]);
+      var anEngineer = new Engineer(
+        engData[0],
+        engData[1],
+        engData[2],
+        engData[3]
+      );
       var engCard = `<div class="card mx-3 my-3" style="width: 18rem">
       <div class="card-header bg-primary text-light text-center">
         ${anEngineer.getName()} <br />
@@ -65,28 +70,40 @@ inquirer
           <li class="list-group-item border"><a class="card-link" href="https://github.com/${anEngineer.getGitHub()}">${anEngineer.getGitHub()}</a></li>
         </ul>
       </div>
-    </div>`
-      
+    </div>`;
+
       // employees.push(engineer);
       console.log(anEngineer);
       cards.push(engCard);
     }
-    // if (response.options == "Add an intern") {
-    //   var internData = response.intern.split(" ");
-    //   var intern = {
-    //     title: "Intern",
-    //     name: internData[0],
-    //     id: internData[1],
-    //     email: internData[2],
-    //     gitHub: internData[3],
-    //   }
-    //   employees.push(intern);
-    // }
-    // if (response.options == "Finished") {
-    //   fs.writeFile('dist.html', )
-    // }
-    // console.log(employees);
-    fs.appendFile('./dist/myTeam.html', `<!DOCTYPE html>
+    if (response.options == "Add an intern") {
+      var internData = response.intern.split(" ");
+      var anIntern = new Intern(
+        internData[0],
+        internData[1],
+        internData[2],
+        internData[3]
+      );
+      var internCard = `<div class="card mx-3 my-3" style="width: 18rem">
+        <div class="card-header bg-primary text-light text-center">
+          ${anIntern.getName()} <br />
+          ${anIntern.getRole()}
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item border">${anIntern.getId()}</li>
+            <li class="list-group-item border"><a class="card-link" href="mailto: ${anIntern.getEmail()}">${anIntern.getEmail()}</a></li>
+            <li class="list-group-item border">${anIntern.getSchool()}</li>
+          </ul>
+        </div>
+      </div>`;
+
+      console.log(anIntern);
+      cards.push(internCard);
+    }
+    fs.appendFile(
+      "./dist/myTeam.html",
+      `<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -117,7 +134,7 @@ inquirer
           crossorigin="anonymous"
         ></script>
       </body>
-    </html>`, (error, data) =>
-    error ? console.error(error) : console.log(data)
-    )
+    </html>`,
+      (error, data) => (error ? console.error(error) : console.log(data))
+    );
   });
