@@ -1,4 +1,4 @@
-Walkthrough Video: https://drive.google.com/file/d/1JFa1nfMYbQpDY9u06d0oIReKXpnoKF_g/view
+WALKTHROUGH VIDEO: https://drive.google.com/file/d/1JFa1nfMYbQpDY9u06d0oIReKXpnoKF_g/view
 
 COMMAND LINE INTERFACE:
 My CLI works to the extent that it can generate a file with one employee. I did not understand how to loop back to the checkbox menu where the user chooses Engineer, Intern, or Finished, and therefore the Finished option is not shown in my walkthrough video.
